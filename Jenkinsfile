@@ -10,7 +10,7 @@ pipeline{
                 
                 script{
                     
-                    git branch: 'main', url: 'https://github.com/vikash-kumar01/mrdevops_javaapplication.git'
+                    git branch: 'main', url: 'https://github.com/sumit0012/demo-counter-app.git'
                 }
             }
         }
@@ -54,7 +54,7 @@ pipeline{
                         
                         sh 'mvn clean package sonar:sonar'
                     }
-                   }
+                }
                     
                 }
             }
