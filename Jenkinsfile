@@ -105,6 +105,18 @@ pipeline{
                     }
                 }
             }
+            stage('Push Image to Docker Hub'){
+                steps{
+                    script{
+                        withCredentials([string(credentialsId: 'docker-hub-cred', variable: 'docker-hub-cred')]) {
+
+                            sh 'docker login -u sam3ctc -p ${docker-hub-cred}'
+                            sh 'docker image push sam3ctc/$JOB_NAME:v1.$BUILD_ID'
+                            sh 'docker image push sam3ctc/$JOB_NAME:latest'
+                        }   
+                    }
+                }
+            }
         }
         
 }
