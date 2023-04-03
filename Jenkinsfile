@@ -90,10 +90,19 @@ pipeline{
                             nexusUrl: '34.125.58.111:8081', 
                             nexusVersion: 'nexus3', 
                             protocol: 'http', 
-                            repository: nexusRepo, 
+                            repository: 'nexusRepo', 
                             version: "${readPomVersion.version}"
                     }
 
+                }
+            }
+            stage('Docker Image Build'){
+                steps{
+                    script {
+                        sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID .'
+                        sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sam3ctc/$JOB_NAME:v1.$BUILD_ID'
+                        sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sam3ctc/$JOB_NAME:latest'
+                    }
                 }
             }
         }
