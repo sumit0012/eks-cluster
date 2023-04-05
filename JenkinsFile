@@ -1,0 +1,14 @@
+pipeline {
+
+    agent any
+
+    stages{
+
+        stage('git checkout'){
+
+            steps{
+                git branch: 'main', url: 'https://github.com/sumit0012/eks-cluster.git'
+            }
+        }
+    }
+}
