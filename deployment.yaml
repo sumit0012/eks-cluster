@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+    name: mydeployment
+spec:
+    replicas: 2
+    selector: 
+      matchLabels:
+          app: myspringbootapp
+    template:
+      metadata:
+        labels:
+          app: myspringbootapp
+      spec:
+        containers:
+          - name: myspringbootapp
+            image: sam3ctc/cicd:latest
+            ports:
+              - containerPort: 9099      
